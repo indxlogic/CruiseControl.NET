@@ -1,27 +1,30 @@
 body 
 {
-  text-align: center;
-  margin-top:10px;
-  margin-bottom:10px;
+  margin-top:.5em;
+  margin-bottom:1em;
   color:#666666;
   background-color: #E0E0E0;
+  font-family: Arial;
+  font-size: 1.2em;
 }
 
 A:link 
 {
-	COLOR: #0000FF; text-decoration: underline;
+	COLOR: #FFFFFF; 
+	text-decoration: none;
+	font-weight: bold;
 }
 A:visited 
 {
-	COLOR: #0000FF; text-decoration: underline;
+	COLOR: #FFFFFF; text-decoration: none;
 }
 A:active 
 {
-	COLOR: #0000FF; text-decoration: none;
+	COLOR: #FFFFFF; text-decoration: none;
 }
 A:hover 
 {
-	COLOR: #FF0000; text-decoration: none;
+	COLOR: #FFFFFF; text-decoration: underline;
 }
 
 #pageWrapper 
@@ -31,7 +34,7 @@ A:hover
   width: 98%;
   text-align: left;
   background: #FFFFFF;
-  border: 8px solid #FFFFFF;
+  border: .5rem solid #c0c0c0;
 }
 
 #header
@@ -42,18 +45,16 @@ A:hover
 }
 
 #headerTitle {
-	background:transparent url(images/header_bg.gif) no-repeat scroll right top;
-	height:60px;
+	height:3rem;
 	margin:0;
-	padding:15px;
+	padding:1rem;
 }
 
 #headerTitle h1
 {
 	color:#FFFFFF;
-	font-family:verdana,arial,sans-serif;
-	font-size:28px;
-	letter-spacing:-1px;
+	font-size:2rem;
+	letter-spacing:-.1rem;
 	margin:0;
 	padding:0;
 }
@@ -62,8 +63,7 @@ A:hover
 {
 	color:#B1C6EB;
 	font-family:verdana,arial,sans-serif;
-	font-size:14px;
-	letter-spacing:1px;
+	font-size:1rem;
 	margin:0;
 	padding:0;
 }
@@ -72,7 +72,7 @@ A:hover
 {
 	border-bottom:1px solid #0F3974;
 	font-family:Verdana,sans-serif;
-	font-size:14px;
+	font-size:1rem;
 	font-size-adjust:none;
 	font-stretch:normal;
 	font-style:normal;
@@ -82,7 +82,7 @@ A:hover
 	margin-bottom:0;
 	margin-left:0;
 	margin-top:1px;
-	margin-right: 20px;
+	margin-right: 1.5rem;
 	padding:5px 0;
 	text-align:right;
 }
@@ -102,14 +102,15 @@ A:hover
 	border-style:solid solid none;
 	border-width:1px 1px medium;
 	color:#F1F6FE;
-	margin-left:3px;
-	padding:5px 15px;
+	margin-left:.2rem;
+	padding:.1rem 1rem;
 }
 
 #breadcrumbs
 {
-	margin:5px;
-	padding:0;
+	margin:0;
+	padding:.25rem;
+	background-color:#4E7DD1;
 }
 
 #breadcrumbs li
@@ -117,7 +118,8 @@ A:hover
 	display:inline;
 	margin:0;
 	padding:0;
-	padding-left:10px;
+	padding-left:1rem;
+	color: white;
 	background:transparent url(images/arrow.gif) no-repeat scroll 0 0.3em;	
 }
 
@@ -125,12 +127,11 @@ A:hover
 	background-color:#4E7DD1;
 	clear:both;
 	color:#B6CEF9;
-	font-family:verdana,arial,sans-serif;
-	font-size:11px;
-	height:40px;
-	padding:10px;
-	margin-top:10px;
-	line-height:18px;
+	font-size:1rem;
+	height:2rem;
+	padding:1rem;
+	margin-top:1rem;
+	line-height:1rem;
 	text-align:center;
 }
 
@@ -157,26 +158,41 @@ A:hover
 
 #sidebar
 {
-	width:200px;
+	font-size: .8rem;
+	margin:0;
+	padding:0;
+	width:20rem;
+	color:#B6CEF9;
+	background-color: #4E7DD1;
 }
 
 #StatusGrid
 {
 	width:100%;
 	border-collapse:collapse;
+	font-size: .9rem;
 }
+
+#StatusGrid a
+{
+	COLOR: #2153AA; 
+	text-decoration: none;
+}
+#StatusGrid a:hover
+{
+	COLOR: #B6CEF9; 
+	text-decoration: none;
+}
+	
 
 #StatusGrid th
 {
-	background-color:#2153AA;
+	background-color:#4E7DD1;
 	border:1px solid #0F3974;
 	color:#FFFFFF;
 	font-family:verdana,arial,sans-serif;
-	font-size:12px;
-	line-height:14px;
-	margin:5px 5px 10px;
+	margin:.25rem .25rem 1rem;
 	padding:4px;	
-	text-align:center;
 }
 
 #StatusGrid th a
@@ -184,11 +200,9 @@ A:hover
 	color:#FFFFFF;
 }
 
-#StatusGrid input
+input
 {
-	font-family:verdana,arial,sans-serif;
-	font-size:12px;
-	width:50px;
+	font-size:1rem;
 }
 
 h2
@@ -197,27 +211,27 @@ h2
 	border:1px solid #0F3974;
 	color:#FFFFFF;
 	font-family:verdana,arial,sans-serif;
-	font-size:14px;
+	font-size:.8rem;
 	font-weight:bold;
-	line-height:14px;
-	margin:5px 5px 10px;
-	padding:4px;	
+	line-height:.8rem;
+	margin:.25rem .25rem 1rem;
+	padding:.25rem;	
 }
 
 .header-title
 {
 	color:#2153AA;
 	font-family:verdana,arial,sans-serif;
-	font-size:18px;
+	font-size:1.2rem;
 	font-weight:bold;
-	line-height:18px;
-	margin-bottom:10px;
-	margin-top:5px;
+	line-height:1.2rem;
+	margin-bottom:1rem;
+	margin-top:.25rem;
 }
 
 .statusYellow
 {
-	padding-left:20px;
+	padding-left:1.5rem;
 	background-image: url(images/bullet_black.png);
 	background-repeat:no-repeat;
 	color:#888888;
@@ -226,7 +240,7 @@ h2
 .statusRed
 {
 	color:#B22222;
-	padding-left:20px;
+	padding-left:1.5rem;
 	background-image: url(images/bullet_cross.png);
 	background-repeat:no-repeat;
 	font-weight:bold;
@@ -234,7 +248,7 @@ h2
 
 .statusGreen
 {
-	padding-left:20px;
+	padding-left:1.5rem;
 	background-image: url(images/bullet_tick.png);
 	background-repeat:no-repeat;
 	color:#228B22;
@@ -243,7 +257,7 @@ h2
 
 .csharpcode, .csharpcode pre
 {
-	font-size: small;
+	font-size: .60rem;
 	color: black;
 	font-family: Consolas, "Courier New", Courier, Monospace;
 	background-color: #ffffff;
@@ -289,7 +303,7 @@ h2
 }
 .userList-table td
 {
-	padding: 2px;
+	padding: 1.rem;
 	cursor:pointer;
 }
 .userList-table .odd td
