@@ -191,6 +191,16 @@ namespace ThoughtWorks.CruiseControl.Core.Tasks
         public ProcessPriorityClass Priority { get; set; }
         #endregion
 
+        #region Version
+        /// <summary>
+        /// Indicates that the CCNetLabel should be integrated
+        /// </summary>
+        /// <version>1.0</version>
+        /// <default>False</default>
+        [ReflectorProperty("version", Required = false)]
+        public bool VersionWithLabel { get; set; }
+        #endregion
+
         #endregion
 
         /// <summary>
@@ -211,6 +221,7 @@ namespace ThoughtWorks.CruiseControl.Core.Tasks
         /// <remarks></remarks>
 		protected override string GetProcessArguments(IIntegrationResult result)
 		{
+			var label = result.IntegrationProperties["CCNetLabel"];
 			ProcessArgumentBuilder b = new ProcessArgumentBuilder();
 
 			b.AddArgument("/nologo");
@@ -229,6 +240,10 @@ namespace ThoughtWorks.CruiseControl.Core.Tasks
 			}
 			b.AppendArgument(GetPropertyArgs(result));
 			b.AppendArgument(BuildArgs);
+			//AssemblyVersion = File Version && Version = Product Version
+			if(VersionWithLabel) b.AppendArgument($" /p:AssemblyVersion={label} /p:Version={label}" );
+			//TODO: Find a better way to integrage with the label
+			//if(!string.IsNullOrEmpty(AssemblyInformationalVersion)) b.AppendArgument($" /p:InformationalVersion={AssemblyInformationalVersion}");
 			b.AddArgument(ProjectFile);
 			b.AppendArgument(GetLoggerArgs(result));
 
