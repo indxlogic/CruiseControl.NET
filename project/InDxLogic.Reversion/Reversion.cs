@@ -36,6 +36,9 @@ namespace InDxLogic.Reversion
             [ReflectorProperty("date")]
             public bool Date { get; set; }
 
+            [ReflectorProperty("dateOverride", Required = false)]
+            public string DateOverride { get; set; }
+
             [ReflectorProperty("major")]
             public int Major { get; set; }
 
@@ -70,8 +73,11 @@ namespace InDxLogic.Reversion
 
                 foreach (var kv in keyValues) if (!dic.ContainsKey(kv)) dic.Add(kv, string.Empty);
 
-                var _Obsfucation = Date ? DateTime.Now.ToString("yyMM") : Build.ToString();
-                var _Build = Date ? DateTime.Now.ToString("dd") : result.IntegrationProperties["CCNetNumericLabel"].ToString();
+                var workingDate = DateTime.Now;
+                DateTime.TryParse(DateOverride, out workingDate);
+
+                var _Obsfucation = Date ? workingDate.ToString("yyMM") : Build.ToString();
+                var _Build = Date ? workingDate.ToString("dd") : result.IntegrationProperties["CCNetNumericLabel"].ToString();
 
                 dic["AssemblyVersion"] = string.Format("[assembly: {0}(\"{1}.{2}.{3}.{4}\")]", "AssemblyVersion", Major, Minor, _Obsfucation, _Build);
                 dic["AssemblyFileVersion"] = string.Format("[assembly: {0}(\"{1}.{2}.{3}.{4}\")]", "AssemblyFileVersion", Major, Minor, _Obsfucation, _Build);
