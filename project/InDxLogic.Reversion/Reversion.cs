@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Exortech.NetReflector;
 using ThoughtWorks.CruiseControl.Core;
 
@@ -73,20 +72,20 @@ namespace InDxLogic.Reversion
 
                 foreach (var kv in keyValues) if (!dic.ContainsKey(kv)) dic.Add(kv, string.Empty);
 
-                var workingDate = DateTime.Now;
-                DateTime.TryParse(DateOverride, out workingDate);
+                var enUs = new CultureInfo("en-US");
+                var workingDate = DateTime.TryParseExact(DateOverride, "MM-dd-yyyy", enUs, DateTimeStyles.None, out var wd) ? wd : DateTime.Now;
 
-                var _Obsfucation = Date ? workingDate.ToString("yyMM") : Build.ToString();
-                var _Build = Date ? workingDate.ToString("dd") : result.IntegrationProperties["CCNetNumericLabel"].ToString();
+                string obfuscation = Date ? workingDate.ToString("yyMM") : Build.ToString();
+                string build = Date ? workingDate.ToString("dd") : result.IntegrationProperties["CCNetNumericLabel"].ToString();
 
-                dic["AssemblyVersion"] = string.Format("[assembly: {0}(\"{1}.{2}.{3}.{4}\")]", "AssemblyVersion", Major, Minor, _Obsfucation, _Build);
-                dic["AssemblyFileVersion"] = string.Format("[assembly: {0}(\"{1}.{2}.{3}.{4}\")]", "AssemblyFileVersion", Major, Minor, _Obsfucation, _Build);
-                dic["AssemblyInformationalVersion"] = string.Format("[assembly: {0}(\"{1}.{2} {3}\")]", "AssemblyInformationalVersion", Major, Minor, InformationalVersion);
-                dic["AssemblyCopyright"] = string.Format("[assembly: AssemblyCopyright(\"Copyright © InDxLogic, Inc. 2007-{0}\")]", DateTime.Now.Year);
+                dic["AssemblyVersion"] = $"[assembly: AssemblyVersion(\"{Major}.{Minor}.{obfuscation}.{build}\")]";
+                dic["AssemblyFileVersion"] = $"[assembly: AssemblyFileVersion(\"{Major}.{Minor}.{obfuscation}.{build}\")]";
+                dic["AssemblyInformationalVersion"] = $"[assembly: AssemblyInformationalVersion(\"{Major}.{Minor} {InformationalVersion}\")]";
+                dic["AssemblyCopyright"] = $"[assembly: AssemblyCopyright(\"Copyright © InDxLogic, Inc. 2007-{DateTime.Now.Year}\")]";
                 dic["AssemblyCompany"] = "[assembly: AssemblyCompany(\"InDxLogic, Inc.\")]";
 
                 if (!string.IsNullOrEmpty(AssemblyProduct))
-                    dic["AssemblyProduct"] = string.Format("[assembly: AssemblyProduct(\"{0}\")]", AssemblyProduct);
+                    dic["AssemblyProduct"] = $"[assembly: AssemblyProduct(\"{AssemblyProduct}\")]";
 
                 var sb = new StringBuilder();
                 foreach (var kvp in dic.Values)

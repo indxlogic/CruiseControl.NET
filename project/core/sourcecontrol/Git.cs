@@ -556,6 +556,11 @@ namespace ThoughtWorks.CruiseControl.Core.Sourcecontrol
         {
             string wd = BaseWorkingDirectory(result);
 
+            //Add the working directory if it does not exist. The Execute method below will fail
+            //if the directory does not exist.
+            //Adding the directory here should not affect the behavior of the project.
+            if (Directory.Exists(wd) == false) Directory.CreateDirectory(wd);
+
             ProcessArgumentBuilder buffer = new ProcessArgumentBuilder();
             buffer.AddArgument("clone");
             buffer.AddArgument(Repository);
